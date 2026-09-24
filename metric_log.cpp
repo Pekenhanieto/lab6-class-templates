@@ -37,8 +37,7 @@ private:
 
 public:
     // TODO (Part C): Write a constructor that creates an empty log.
-    MetricLog() : CAPACITY(4), count(0) {
-    }
+    MetricLog() : CAPACITY(4), count(0) {}
 
     // TODO (Part C): Write add. It receives one generic value by const reference.
     // Return false when the log has no remaining capacity.
@@ -71,7 +70,7 @@ public:
         return count == 0;
     }
 
-    bool contains(const T& target) const;
+    bool contains(const T& target) const; // Declaration of contains member function
 };
 
 // ===== Do not resolve these TODOs yet (Part D) =====
@@ -80,24 +79,48 @@ public:
 // It receives a generic target by const reference.
 // Return true when an equal stored value exists; otherwise return false.
 
+// Here's the definition of the contains member function outside the class:
+template <typename T>
+bool MetricLog<T>::contains(const T& target) const {
+        for (int i = 0; i < count; ++i) {
+            if (values[i] == target) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 int main()
 {
+    cout << boolalpha;        // Print bool values as true or false.
     MetricLog<int> waitlistCounts;
 
+    // Add two waitlist counts to the log.
     waitlistCounts.add(6);
     waitlistCounts.add(11);
 
-    cout << "First waitlist count: "
-         << waitlistCounts.get(0) << endl;
-    cout << "Stored waitlist counts: "
-         << waitlistCounts.size() << endl;
+    // Print the first waitlist count and the number of stored waitlist counts.
+    cout << "First waitlist count: " << waitlistCounts.get(0) << endl;
+    cout << "Stored waitlist counts: " << waitlistCounts.size() << endl;
 
     // ===== Do not resolve these TODOs yet (Part E) =====
 
     // TODO (Part E): Create a MetricLog<double> for session durations.
+    MetricLog<double> sessionDurations; // Create a log for session durations
+
     // TODO (Part E): Add two dummy duration values to that log.
+    sessionDurations.add(120.5); // Add a session duration of 120.5 seconds
+    sessionDurations.add(180.0); // Add a session duration of 180.0 seconds
+
     // TODO (Part E): Use contains with one value that exists and one that does not exist.
+    bool exists1 = sessionDurations.contains(120.5); // Check for a value that exists
+    bool exists2 = sessionDurations.contains(90.0); // Check for a value that does not exist
+
     // TODO (Part E): Print descriptive English labels for all results.
+    cout << "Session duration of 120.5 seconds: " << (exists1 ? "Found" : "Not Found") << endl; // Print result for the first value
+    cout << "Session duration of 90.0 seconds: " << (exists2 ? "Found" : "Not Found") << endl; // Print result for the second value
 
     return 0;
 }
