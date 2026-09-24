@@ -9,17 +9,25 @@
 #include <iostream>
 using namespace std;
 
-/*
- * MetricLog ADT
+/* 
+* MetricLog ADT
  *
  * Data:
  * [Complete in Part E: describe the values managed by this log.]
  *
  * Operations:
  * [Complete in Part E: describe add(value).]
+ * Add a new value to the log. Return false when the log has no remaining capacity.
+ * 
  * [Complete in Part E: describe get(index) and its precondition.]
+ * Get the value stored at the given index. The index must be valid (0 <= index < size()).
+ * 
  * [Complete in Part E: describe contains(target).]
+ * Determine whether the log contains a value equal to the given target.
+ * 
  * [Complete in Part E: describe size() and isEmpty().]
+ * Return the number of values currently stored in the log. Return true when the log stores no values.
+ * 
  */
 
 template <typename T>
